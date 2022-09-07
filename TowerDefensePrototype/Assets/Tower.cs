@@ -9,19 +9,33 @@ public class Tower : MonoBehaviour
     public int projectileDamage = 1;
     public int fireRate = 1;
     public float range = 1f;
-    public GameObject Target;
+    
+    private Enemy target;
     private bool ShouldBeShooting = false;
 
+    public GameObject player;
+    public CircleCollider2D collider;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        collider.radius = range;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.tag == "Enemy")
+        {
+            target = other.GetComponent<Enemy>();
+            ShouldBeShooting = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (ShouldBeShooting)
+        {
+            //TODO: make damage per second
+            target.takeDamage(projectileDamage);
+        }
     }
 }

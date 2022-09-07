@@ -8,15 +8,20 @@ public class Enemy : MonoBehaviour
     public int movementSpeed = 2;
     public int loot = 1;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject player;
+
+    private void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void takeDamage(int damage)
     {
-        
+
+    }
+
+    public void die()
+    {
+
     }
 }

@@ -14,5 +14,18 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void 
+    public void gainKill()
+    {
+
+    }
+
+    public void gainMoney()
+    {
+
+    }
+
+    public void loseMoney()
+    {
+
+    }
 }
