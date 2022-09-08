@@ -12,30 +12,63 @@ public class Tower : MonoBehaviour
     
     private Enemy target;
     private bool ShouldBeShooting = false;
+    private float timerRemaining = 30f;
 
     public GameObject player;
-    public CircleCollider2D collider;
+    public CircleCollider2D collider2D;
 
     private void Start()
     {
-        collider.radius = range;
+        collider2D.radius = range;
     }
 
-    private void OnTriggerEnter(Collider other)
+  
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
-            target = other.GetComponent<Enemy>();
+            target = collision.GetComponent<Enemy>();
             ShouldBeShooting = true;
+            GetComponent<Timer>().startTimer(60 / projectileSpeed);
         }
     }
 
-    private void Update()
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            ShouldBeShooting = false;
+            GetComponent<Timer>().stopTimer();
+        }
+    }
+
+    public void timeOut()
     {
         if (ShouldBeShooting)
         {
+            target.takeDamage(projectileDamage);
+            GetComponent<Timer>().startTimer(60 / projectileSpeed);
+            print("BULLET FIRED");
+        }
+        
+    }
+
+
+    private void Update()
+    {
+        /*if (timerRemaining > 0)
+        {
+            timerRemaining -= Time.deltaTime;
+        }
+        else
+        {
+            print("TIME");
+        }*/
+        /*if (ShouldBeShooting)
+        {
             //TODO: make damage per second
             target.takeDamage(projectileDamage);
-        }
+        }*/
     }
 }
