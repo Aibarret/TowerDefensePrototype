@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-
+        player = GameObject.Find("Player");
     }
 
     private void Update()
@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
 
     public void die()
     {
+        player.GetComponent<Player>().gainKill(loot);
         GameObject.Destroy(gameObject);
     }
 }
