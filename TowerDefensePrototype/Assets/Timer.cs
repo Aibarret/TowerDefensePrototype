@@ -18,6 +18,8 @@ public class Timer : MonoBehaviour
             if (remainingTime > 0)
             {
                 remainingTime -= Time.deltaTime;
+                print(remainingTime);
+
             }
             else
             {
@@ -30,6 +32,7 @@ public class Timer : MonoBehaviour
 
     public void startTimer(float timerDuration)
     {
+        
         remainingTime = timerDuration;
         timerOn = true;
     }
