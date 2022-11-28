@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
             if (remainingTime > 0)
             {
                 remainingTime -= Time.deltaTime;
-                print(remainingTime);
+                //print(remainingTime);
 
             }
             else

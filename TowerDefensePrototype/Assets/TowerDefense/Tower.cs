@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum towerTypes
+{
+    Fire,
+    Ice,
+}
+
 public class Tower : MonoBehaviour
 {
     public int cost = 5;
@@ -17,12 +23,27 @@ public class Tower : MonoBehaviour
     public GameObject player;
     public CircleCollider2D collider2D;
 
+    public towerTypes type;
+
+    
+
     private void Start()
     {
         //collider2D.radius = range;
     }
 
-  
+    public int getProjectileDamage()
+    {
+        switch (type)
+        {
+            case towerTypes.Fire:
+                return 3;
+            case towerTypes.Ice:
+                return 1;
+            default:
+                return 0;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,8 +51,7 @@ public class Tower : MonoBehaviour
         {
             ShouldBeShooting = true;
             target = collision.gameObject.GetComponent<Enemy>();
-            target.takeDamage(projectileDamage);
-            print("BULLET FIRED");
+            target.takeDamage(getProjectileDamage(), type);
             GetComponent<Timer>().startTimer(60 / fireRate);
         }
     }
@@ -50,9 +70,8 @@ public class Tower : MonoBehaviour
     {
         if (ShouldBeShooting)
         {
-            target.takeDamage(projectileDamage);
+            target.takeDamage(getProjectileDamage(), type);
             GetComponent<Timer>().startTimer(60 / fireRate);
-            print("BULLET FIRED");
         }
         
     }
