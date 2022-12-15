@@ -10,9 +10,9 @@ public abstract class Character
 
     public abstract void speak();
 
-    public virtual void walk()
+    public virtual void walk(Vector3 dir)
     {
-        controller.transform.position += new Vector3(speed, 0, 0);
+        controller.transform.position += (dir * speed);
     }
 
     public abstract void attack();
