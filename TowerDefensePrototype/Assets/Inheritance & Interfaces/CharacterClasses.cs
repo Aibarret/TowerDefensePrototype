@@ -6,9 +6,17 @@ public abstract class Character
 {
     public GameObject controller;
 
+    public NumberRange health;
+
+
     public abstract int speed { get; }
 
     public abstract void speak();
+
+    public virtual void takeDamage(int value)
+    {
+        SFXManager.PlaySound();
+    }
 
     public virtual void walk(Vector3 dir)
     {
